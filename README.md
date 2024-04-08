@@ -1,6 +1,6 @@
 
 
-> This `PHP Favicon Grabber v1.1` use a given url, save a copy (if wished) and return the image path.
+> This `Fork of PHP Favicon Grabber (v1.0) ` use a given url, save a copy (if wished) and returns the image path, and also gives the title.
 
 **This Isn't My Project This Is A Fork - My Changes**
 
