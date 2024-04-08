@@ -2,18 +2,17 @@
 
 > This `PHP Favicon Grabber v1.1` use a given url, save a copy (if wished) and return the image path.
 
-**This Isn't My Project This Is A Fork**
+**This Isn't My Project This Is A Fork - My Changes**
 
 ------------
 
-Changes:
+1. Grabs Title
+2. &format=json gives you it in JSON 
+3. Saves it it /metadata-storage/
 
-Grabs Title
-
-&format=json gives you it in JSON 
-
-Saves it it /metadata-storage/
-
+Fork Goals
+------------
+Make it better for Loogle+
 ------------
 
 How it Works
