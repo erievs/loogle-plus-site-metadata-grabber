@@ -9,6 +9,7 @@
 1. Grabs Title
 2. &format=json gives you it in JSON 
 3. Saves it it /metadata-storage/
+4. Grabs the biggest image, if that fails then we grab the favicon.
 
 Fork Goals
 ------------
