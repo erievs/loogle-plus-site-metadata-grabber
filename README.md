@@ -12,7 +12,9 @@
 
 Fork Goals
 ------------
-Make it better for Loogle+
+
+Make it better for Loogle+, that's about it.
+
 ------------
 
 How it Works
