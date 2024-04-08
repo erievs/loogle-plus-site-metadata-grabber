@@ -1,17 +1,15 @@
 <?php
-
 $url = isset($_GET['url']) ? $_GET['url'] : '';
 $outputFormat = isset($_GET['format']) ? $_GET['format'] : 'html';
 
 if (!empty($url)) {
-
     $metadata = get_metadata($url);
 
     if ($outputFormat === 'json') {
         header('Content-Type: application/json');
         echo json_encode($metadata);
     } else {
-        echo '<img src="' . $metadata['favicon'] . '">';
+        echo '<img src="' . $metadata['image'] . '">';
         echo '<h1>' . $metadata['title'] . '</h1>';
     }
 } else {
@@ -22,12 +20,14 @@ function get_metadata($url, $path = '../metadata-storage/') {
     $data = array();
 
     $html = fetch_html($url);
-
     $title = extract_title($html);
-    $favicon = save_favicon($url, $path);
+    $image = fetch_largest_image($html, $url);
+    if (!$image) {
+        $image = save_favicon($url, $path);
+    }
 
     $data['title'] = $title;
-    $data['favicon'] = $favicon;
+    $data['image'] = $image;
 
     return $data;
 }
@@ -43,6 +43,38 @@ function extract_title($html) {
     return isset($matches[1]) ? $matches[1] : '';
 }
 
+function fetch_largest_image($html, $url) {
+    $doc = new DOMDocument();
+    @$doc->loadHTML($html);
+
+    $images = $doc->getElementsByTagName('img');
+    $largestImage = null;
+    $largestSize = 0;
+
+    foreach ($images as $image) {
+        $src = $image->getAttribute('src');
+        $size = get_image_size($src);
+        if ($size > $largestSize) {
+            $largestSize = $size;
+            $largestImage = $src;
+        }
+    }
+
+    if ($largestImage) {
+        return $largestImage;
+    } else {
+        return false;
+    }
+}
+
+function get_image_size($url) {
+    $headers = get_headers($url, true);
+    if (isset($headers['Content-Length'])) {
+        return (int)$headers['Content-Length'];
+    } else {
+        return 0;
+    }
+}
 
 function save_favicon($url, $path = '../metadata-storage/') {
     $url = parse_url($url, PHP_URL_HOST);
@@ -59,5 +91,4 @@ function save_favicon($url, $path = '../metadata-storage/') {
     }
     return $file;
 }
-
 ?>
