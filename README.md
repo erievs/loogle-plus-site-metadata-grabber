@@ -4,6 +4,8 @@
 
 **This Isn't My Project This Is A Fork**
 
+------------
+
 Changes:
 
 Grabs Title
@@ -11,6 +13,8 @@ Grabs Title
 &format=json gives you it in JSON 
 
 Saves it it /metadata-storage/
+
+------------
 
 How it Works
 ------------
