@@ -2,6 +2,16 @@
 
 > This `PHP Favicon Grabber v1.1` use a given url, save a copy (if wished) and return the image path.
 
+**This Isn't My Project This Is A Fork**
+
+Changes:
+
+Grabs Title
+
+&format=json gives you it in JSON 
+
+Saves it it /metadata-storage/
+
 How it Works
 ------------
 
